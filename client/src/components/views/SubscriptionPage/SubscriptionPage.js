@@ -2,17 +2,22 @@ import React, {useEffect, useState} from 'react'
 import { FaCode } from "react-icons/fa";
 import { Card, Icon, Avatar, Col, Typography, Row } from 'antd';
 import Axios from 'axios';
-
 import moment from 'moment';
 const { Title } = Typography
 const { Meta } = Card;
 
-function LandingPage() {
+function SubscriptionPage() {
 
     const [Video, setVideo] = useState([])
 
     useEffect(() => {
-        Axios.get('/api/video/getVideos')
+
+        const subscriptionVariables = {
+            userFrom : localStorage.getItem('userId')
+        }
+
+
+        Axios.post('/api/video/getSubscriptionVideos', )
         .then(response=> {
             if(response.data.success) {
                 console.log(response.data)
@@ -24,7 +29,6 @@ function LandingPage() {
         })
         
     }, [])
-
 
     const renderCards = Video.map((video, index) => {
 
@@ -71,4 +75,4 @@ function LandingPage() {
     )
 }
 
-export default LandingPage
+export default SubscriptionPage
